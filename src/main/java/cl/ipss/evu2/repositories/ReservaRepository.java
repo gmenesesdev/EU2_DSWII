@@ -1,41 +1,37 @@
 package cl.ipss.evu2.repositories;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import cl.ipss.evu2.models.Reserva;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
     /**
-     * Encuentra reservas entre un rango de fechas.
-     *
-     * @param inicio la fecha y hora de inicio del rango.
-     * @param fin    la fecha y hora de fin del rango.
-     * @return una lista de reservas dentro del rango de fechas.
+     * Lista las reservas
      */
-    @Query("SELECT r FROM Reserva r WHERE r.fechaHora BETWEEN :inicio AND :fin")
-    List<Reserva> findReservasByFechaHoraBetween(LocalDateTime inicio, LocalDateTime fin);
-
+    @Query("SELECT r FROM Reserva r")
+    List<Reserva> listarReservas();
     /**
-     * Encuentra todas las reservas asociadas a una mesa específica.
-     *
-     * @param mesaId el ID de la mesa.
-     * @return una lista de reservas para esa mesa.
+     * lista las reservas de un cliente
      */
-    @Query("SELECT r FROM Reserva r WHERE r.mesa.id = :mesaId")
-    List<Reserva> findReservasByMesaId(Long mesaId);
-
+    @Query("SELECT r FROM Reserva r WHERE r.cliente.id = :cliente_id")
+    List<Reserva> listarReservasCliente(Long cliente_id);
     /**
-     * Encuentra todas las reservas realizadas por un cliente específico.
-     *
-     * @param clienteId el ID del cliente.
-     * @return una lista de reservas para ese cliente.
+     * Cancelar reserva
      */
-    @Query("SELECT r FROM Reserva r WHERE r.cliente.id = :clienteId")
-    List<Reserva> findReservasByClienteId(Long clienteId);
+    @Query("DELETE FROM Reserva r WHERE r.id = :reserva_id")
+    void cancelarReserva(Long reserva_id);
+    /**
+     * Crea una reserva (se inserta en la tabla Reserva con la fecha
+     */   
+    @Query("INSERT INTO Reserva (mesa_id, cliente_id, fecha) VALUES (:mesa_id, :cliente_id, :fecha)")
+    void crearReserva(Long mesa_id, Long cliente_id, Date fecha);
+
+
+    
 }

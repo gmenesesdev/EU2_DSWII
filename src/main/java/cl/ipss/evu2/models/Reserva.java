@@ -1,6 +1,6 @@
 package cl.ipss.evu2.models;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,15 +23,15 @@ public class Reserva {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
-    private LocalDateTime fechaHora;
+    private Date fecha;
 
     public Reserva() {
     }
 
-    public Reserva(Mesa mesa, Cliente cliente, LocalDateTime fechaHora) {
+    public Reserva(Mesa mesa, Cliente cliente, Date fecha) {
         this.mesa = mesa;
         this.cliente = cliente;
-        this.fechaHora = fechaHora;
+        this.fecha = fecha;
     }
 
     public Long getId() {
@@ -58,12 +58,12 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public LocalDateTime getFechaHora() {
-        return fechaHora;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     
