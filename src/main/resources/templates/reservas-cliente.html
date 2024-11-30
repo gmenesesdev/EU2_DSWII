@@ -1,43 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/master}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservas por Cliente</title>
 </head>
+
 <body>
-    <h1 th:text="${titulo}">Reservas por Cliente</h1>
-    
-    <!-- Formulario para buscar reservas -->
-    <form th:action="@{/reservas/cliente}" method="get">
-        <label for="clienteId">Ingrese ID del Cliente:</label>
-        <input type="number" id="clienteId" name="clienteId" placeholder="ID del Cliente" required>
-        <button type="submit">Buscar</button>
-    </form>
-    
-    <hr>
-    
-    <!-- Mensaje cuando no se encuentran reservas -->
-    <p th:if="${mensaje}" th:text="${mensaje}"></p>
-    
-    <!-- Tabla de resultados -->
-    <table th:if="${reservas != null && !#lists.isEmpty(reservas)}">
-        <thead>
-            <tr>
-                <th>ID Reserva</th>
-                <th>Cliente</th>
-                <th>Mesa</th>
-                <th>Fecha</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="reserva : ${reservas}">
-                <td th:text="${reserva.id}"></td>
-                <td th:text="${reserva.cliente.nombre}"></td>
-                <td th:text="${reserva.mesa.numero}"></td>
-                <td th:text="${reserva.fecha}"></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row" layout:fragment="page-content" style="margin-top: 50px;">
+        
+        <!-- Formulario para buscar reservas -->
+        <form th:action="@{/reservas/cliente}" method="get" class="col s12 m6 offset-m3">
+            <div class="input-field">
+                <label for="clienteId">Ingrese ID del Cliente:</label>
+                <input type="number" id="clienteId" name="clienteId" placeholder="ID del Cliente" required>
+            </div>
+            <button type="submit" class="btn blue">Buscar</button>
+        </form>
+        
+        <hr>
+        
+        <!-- Mensaje cuando no se encuentran reservas -->
+        <p th:if="${mensaje}" th:text="${mensaje}" class="red-text"></p>
+        
+        <!-- Tabla de resultados -->
+        <table th:if="${reservas != null && !#lists.isEmpty(reservas)}" class="highlight">
+            <thead>
+                <tr>
+                    <th>ID Reserva</th>
+                    <th>Cliente</th>
+                    <th>Mesa</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reserva : ${reservas}">
+                    <td th:text="${reserva.id}"></td>
+                    <td th:text="${reserva.cliente.nombre}"></td>
+                    <td th:text="${reserva.mesa.numero}"></td>
+                    <td th:text="${reserva.fecha}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
+
 </html>
