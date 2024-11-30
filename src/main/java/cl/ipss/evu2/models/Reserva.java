@@ -66,5 +66,9 @@ public class Reserva {
         this.fecha = fecha;
     }
 
+    public boolean isEmpty() {
+        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+    }
+
     
 }

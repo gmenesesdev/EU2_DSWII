@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas por Cliente</title>
+</head>
+<body>
+    <h1 th:text="${titulo}">Reservas por Cliente</h1>
+    
+    <!-- Formulario para buscar reservas -->
+    <form th:action="@{/reservas/cliente}" method="get">
+        <label for="clienteId">Ingrese ID del Cliente:</label>
+        <input type="number" id="clienteId" name="clienteId" placeholder="ID del Cliente" required>
+        <button type="submit">Buscar</button>
+    </form>
+    
+    <hr>
+    
+    <!-- Mensaje cuando no se encuentran reservas -->
+    <p th:if="${mensaje}" th:text="${mensaje}"></p>
+    
+    <!-- Tabla de resultados -->
+    <table th:if="${reservas != null && !#lists.isEmpty(reservas)}">
+        <thead>
+            <tr>
+                <th>ID Reserva</th>
+                <th>Cliente</th>
+                <th>Mesa</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="reserva : ${reservas}">
+                <td th:text="${reserva.id}"></td>
+                <td th:text="${reserva.cliente.nombre}"></td>
+                <td th:text="${reserva.mesa.numero}"></td>
+                <td th:text="${reserva.fecha}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
