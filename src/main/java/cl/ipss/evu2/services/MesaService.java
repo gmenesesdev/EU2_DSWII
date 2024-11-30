@@ -21,4 +21,16 @@ public class MesaService {
     public List<Mesa> findMesasDisponibles(Date fecha) {
         return mesaRepository.findMesasDisponibles(fecha);
     }
+
+    public Mesa guardarMesa(Mesa mesa) {
+        return mesaRepository.save(mesa);
+    }
+
+    public void eliminarMesa(long id) {
+        mesaRepository.deleteById(id);
+    }
+
+    public Mesa obtenerMesa(long id) {
+        return mesaRepository.findById(id).orElse(null);
+    }
 }

@@ -14,7 +14,7 @@ import jakarta.persistence.OneToMany;
 public class Mesa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private int capacidad;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "mesa", cascade = CascadeType.ALL)
@@ -27,11 +27,11 @@ public class Mesa {
         this.capacidad = capacidad;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
