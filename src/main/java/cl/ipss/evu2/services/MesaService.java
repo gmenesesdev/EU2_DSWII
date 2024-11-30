@@ -15,11 +15,7 @@ public class MesaService {
     private MesaRepository mesaRepository;
 
     public List<Mesa> listarMesas() {
-        return mesaRepository.listarMesas();
-    }
-
-    public void actualizarMesa(Long mesaId, int capacidad) {
-        mesaRepository.modificarMesa(mesaId, capacidad);
+        return mesaRepository.findAll();
     }
 
     public List<Mesa> findMesasDisponibles(Date fecha) {
