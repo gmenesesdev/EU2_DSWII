@@ -19,7 +19,7 @@ public class MesaService {
     }
 
     public void actualizarMesa(Long mesaId, int capacidad) {
-        mesaRepository.actualizarMesa(mesaId, capacidad);
+        mesaRepository.modificarMesa(mesaId, capacidad);
     }
 
     public List<Mesa> findMesasDisponibles(Date fecha) {
