@@ -17,40 +17,27 @@
         <form class="col s12" th:action="@{/clientes/guardar}" th:object="${cliente}" method="post">
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="nombre">Nombre:</label>
+                    <label for="nombre">Nombre Completo:</label>
                     <input type="text" id="nombre" th:field="*{nombre}" required />
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="bio">Biografía:</label>
-                    <textarea id="bio" th:field="*{bio}" class="materialize-textarea" required></textarea>
+                    <label for="email">Email:</label>
+                    <textarea id="email" th:field="*{email}" class="materialize-textarea" required></textarea>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select th:field="*{serie}">
-                        <option value="" disabled selected>Selecciona una Serie</option>
-                        <option th:each="serie : ${series}" th:value="${serie.id}" th:text="${serie.title}"></option>
-                    </select>
-                    <label for="serie">Serie</label>
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" th:field="*{telefono}" required />
                 </div>
             </div>
             <div class="input-field col s12">
-                <button type="submit" class="btn">Guardar Personaje</button>
+                <button type="submit" class="btn">Guardar Cliente</button>
             </div>
     </div>
-    </form>
-    
-    </div>
-    <script layout:fragment="javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems);
-        });
-    </script>
-    
-    
+    </form>    
 </body>
 
 
