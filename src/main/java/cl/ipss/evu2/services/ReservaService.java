@@ -14,7 +14,7 @@ public class ReservaService {
     private ReservaRepository reservaRepository;
 
     public List<Reserva> listarReservas() {
-        return reservaRepository.listarReservas();
+        return reservaRepository.findAll();
     }
 
     public Reserva crearReserva(Reserva reserva) {
