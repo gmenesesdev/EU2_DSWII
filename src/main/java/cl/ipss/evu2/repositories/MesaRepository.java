@@ -12,23 +12,16 @@ import java.util.List;
 
 @Repository
 public interface MesaRepository extends JpaRepository<Mesa, Long> {
-    /**
-     * Lista las mesas
-     * 
-     * @return una lista de todas las mesas.
-     */
+    // ! Querys para Admin
+    // * Lista las mesas
     @Query("SELECT m FROM Mesa m")
     List<Mesa> listarMesas();
 
-    /**
-     * Actualizar la mesa
-     */
+    // * Actualizar la mesa
     @Query("UPDATE Mesa m SET m.capacidad = :capacidad WHERE m.id = :mesa_id")
-    void actualizarMesa(Long mesa_id, int capacidad);
+    void modificarMesa(Long mesa_id, int capacidad);
 
-    /**
-     * Muestra las mesas disponibles
-     */
+    // ! Querys para Cliente
     @Query("""
                 SELECT m
                 FROM Mesa m
