@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,17 +23,17 @@ public class MesaController {
         return "admin/mesas/listar";
     }
 
-    @PostMapping("/actualizar")
-    public String actualizarMesa(@RequestParam Long id, @RequestParam int capacidad) {
-        mesaService.actualizarMesa(id, capacidad);
-        return "redirect:/admin/mesas";
-    }
+    // @PostMapping("/actualizar")
+    // public String actualizarMesa(@RequestParam Long id, @RequestParam int capacidad) {
+    //     mesaService.actualizarMesa(id, capacidad);
+    //     return "redirect:/admin/mesas";
+    // }
 
-    @GetMapping("/disponibles")
-    public String buscarMesasDisponibles(@RequestParam Date fecha, Model model) {
-        List<Mesa> mesasDisponibles = mesaService.findMesasDisponibles(fecha);
-        model.addAttribute("mesasDisponibles", mesasDisponibles);
-        model.addAttribute("fecha", fecha);
-        return "admin/mesas/disponibles";
-    }
+    // @GetMapping("/disponibles")
+    // public String buscarMesasDisponibles(@RequestParam Date fecha, Model model) {
+    //     List<Mesa> mesasDisponibles = mesaService.findMesasDisponibles(fecha);
+    //     model.addAttribute("mesasDisponibles", mesasDisponibles);
+    //     model.addAttribute("fecha", fecha);
+    //     return "admin/mesas/disponibles";
+    // }
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,22 +23,22 @@ public class ReservaController {
         return "admin/reservas/listar";
     }
 
-    @PostMapping("/crear")
-    public String crearReserva(@RequestParam Long mesaId, @RequestParam Long clienteId, @RequestParam Date fecha) {
-        reservaService.crearReserva(mesaId, clienteId, fecha);
-        return "redirect:/reservas";
-    }
+    // @PostMapping("/crear")
+    // public String crearReserva(@RequestParam Long mesaId, @RequestParam Long clienteId, @RequestParam Date fecha) {
+    //     reservaService.crearReserva(mesaId, clienteId, fecha);
+    //     return "redirect:/reservas";
+    // }
 
-    @PostMapping("/cancelar")
-    public String cancelarReserva(@RequestParam Long reservaId) {
-        reservaService.cancelarReserva(reservaId);
-        return "redirect:/reservas";
-    }
+    // @PostMapping("/cancelar")
+    // public String cancelarReserva(@RequestParam Long reservaId) {
+    //     reservaService.cancelarReserva(reservaId);
+    //     return "redirect:/reservas";
+    // }
 
-    @GetMapping("/cliente/{clienteId}")
-    public String listarReservasCliente(@PathVariable Long clienteId, Model model) {
-        List<Reserva> reservasCliente = reservaService.listarReservasCliente(clienteId);
-        model.addAttribute("reservasCliente", reservasCliente);
-        return "cliente/reservas/listar";
-    }
+    // @GetMapping("/cliente/{clienteId}")
+    // public String listarReservasCliente(@PathVariable Long clienteId, Model model) {
+    //     List<Reserva> reservasCliente = reservaService.listarReservasCliente(clienteId);
+    //     model.addAttribute("reservasCliente", reservasCliente);
+    //     return "cliente/reservas/listar";
+    // }
 }
