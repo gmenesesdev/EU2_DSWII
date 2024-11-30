@@ -16,7 +16,6 @@ public class Mesa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int capacidad;
-    private boolean disponible;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "mesa", cascade = CascadeType.ALL)
     private List<Reserva> reserva;
@@ -24,9 +23,8 @@ public class Mesa {
     public Mesa() {
     }
 
-    public Mesa(int capacidad, boolean disponible) {
+    public Mesa(int capacidad) {
         this.capacidad = capacidad;
-        this.disponible = disponible;
     }
 
     public long getId() {
@@ -43,14 +41,6 @@ public class Mesa {
 
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
-    }
-
-    public boolean isDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
     }
 
     public List<Reserva> getReserva() {
