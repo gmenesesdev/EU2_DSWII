@@ -23,14 +23,11 @@ public class ReservaService {
     }
 
     public List<Reserva> listarReservasPorClienteId(Long clienteId) {
-        // Esto puede cambiar dependiendo de la lógica de tu aplicación
         List<Reserva> reservas = reservaRepository.findByClienteId(clienteId);
-
         // Si no hay reservas, devolver una lista vacía
         if (reservas == null) {
             return new ArrayList<>();
         }
-
         return reservas;
     }
 

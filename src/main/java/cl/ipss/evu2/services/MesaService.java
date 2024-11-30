@@ -5,7 +5,7 @@ import cl.ipss.evu2.repositories.MesaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,7 +18,7 @@ public class MesaService {
         return mesaRepository.findAll();
     }
 
-    public List<Mesa> findMesasDisponibles(Date fecha) {
+    public List<Mesa> findMesasDisponibles(LocalDate fecha) {
         return mesaRepository.findMesasDisponibles(fecha);
     }
 

@@ -7,12 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import cl.ipss.evu2.models.Mesa;
 
-import java.util.Date;
+import java.time.LocalDate; // Usamos LocalDate en lugar de Date
 import java.util.List;
 
 @Repository
 public interface MesaRepository extends JpaRepository<Mesa, Long> {
-    // ! Querys para Cliente
+
+    // Query modificada para aceptar LocalDate en lugar de Date
     @Query("""
                 SELECT m
                 FROM Mesa m
@@ -22,5 +23,5 @@ public interface MesaRepository extends JpaRepository<Mesa, Long> {
                     WHERE r.fecha = :fecha
                 )
             """)
-    List<Mesa> findMesasDisponibles(@Param("fecha") Date fecha);
+    List<Mesa> findMesasDisponibles(@Param("fecha") LocalDate fecha); // Cambiado de Date a LocalDate
 }

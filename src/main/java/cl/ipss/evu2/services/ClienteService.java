@@ -1,6 +1,7 @@
 package cl.ipss.evu2.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ public class ClienteService {
 
     public Cliente crearCliente(Cliente cliente) {
         return clienteRepository.save(cliente);
+    }
+
+    public Optional<Cliente> buscarClientePorId(Long clienteId) {
+        return clienteRepository.findById(clienteId);
     }
 
 }
