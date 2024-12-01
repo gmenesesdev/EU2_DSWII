@@ -39,6 +39,9 @@
                     <td th:text="${reserva.id}"></td>
                     <td th:text="${reserva.cliente.nombre}"></td>
                     <td th:text="${reserva.mesa.capacidad}"></td>
+                    <td>
+                        <a th:href="@{/reservas/eliminar/{id}(id=${reserva.id})}" class="btn-small red darken-1">Eliminar</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

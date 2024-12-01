@@ -25,14 +25,14 @@
                 method="post"
             >
                 <label for="clienteId">Cliente ID:</label>
-                <input type="text" id="clienteId" th:field="*{cliente.id}" />
+                <input type="text" id="clienteId" th:field="*{cliente.id}"/>
 
-                <label for="mesaId">Mesa ID:</label>
+                <label for="mesaId">Mesa a reservar:</label>
                 <select class="browser-default" id="mesaId" th:field="*{mesa.id}">
                     <option
                         th:each="mesa : ${mesasDisponibles}"
                         th:value="${mesa.id}"
-                        th:text="${mesa.id}"
+                        th:text="${mesa.id} + ' - ' + ' Capacidad: '+ ${mesa.capacidad}"
                     ></option>
                 </select>
 
