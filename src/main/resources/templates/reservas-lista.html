@@ -18,13 +18,11 @@
                 <th>ID</th>
                 <th>Cliente</th>
                 <th>Mesa</th>
-                <th>Fecha</th>
             </tr>
             <tr th:each="reserva: ${reservas}">
                 <td th:text="${reserva.id}"></td>
                 <td th:text="${reserva.cliente.nombre}"></td>
                 <td th:text="${reserva.mesa.id}"></td>
-                <td th:text="${#dates.format(reserva.fecha, 'yyyy-MM-dd')}"></td>
             </tr>
         </table>
     </div>

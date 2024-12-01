@@ -24,35 +24,35 @@ public class MesaController {
 
     @GetMapping("/nueva")
     public String nuevaMesa(Model model) {
-        model.addAttribute("titulo", "Nueva Mesa");
+        model.addAttribute("titulo", "Crear Nueva Mesa");
         model.addAttribute("mesa", new Mesa());
         return "mesas-crear";
     }
 
     @PostMapping("/guardar")
-    public String guardarMesa(Mesa mesa, RedirectAttributes redirectAttributes) {
-        // Verificar si la mesa ya existe (es decir, si tiene un ID)
-        if (mesa.getId() != null) {
-            // Si la mesa tiene ID, es una actualización
-            mesaService.guardarMesa(mesa); // Actualiza la mesa
-            redirectAttributes.addFlashAttribute("msg", "Mesa actualizada con éxito");
-        } else {
-            // Si la mesa no tiene ID, es una nueva mesa
-            mesaService.guardarMesa(mesa); // Crea una nueva mesa
-            redirectAttributes.addFlashAttribute("msg", "Mesa creada con éxito");
-        }
+    public String guardarMesa(@ModelAttribute Mesa mesa, RedirectAttributes redirectAttributes) {
+        String mensaje = (mesa.getId() == null) ? "Mesa creada con éxito" : "Mesa actualizada con éxito";
+        mesaService.guardarMesa(mesa);
+        redirectAttributes.addFlashAttribute("msg", mensaje);
         return "redirect:/mesas";
     }
 
     @GetMapping("/eliminar/{id}")
-    public String eliminarMesa(@PathVariable long id) {
+    public String eliminarMesa(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         mesaService.eliminarMesa(id);
+        redirectAttributes.addFlashAttribute("msg", "Mesa eliminada con éxito");
         return "redirect:/mesas";
     }
 
     @GetMapping("/editar/{id}")
-    public String editarMesa(@PathVariable long id, Model model) {
-        model.addAttribute("mesa", mesaService.obtenerMesa(id));
+    public String editarMesa(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+        Mesa mesa = mesaService.obtenerMesa(id);
+        if (mesa == null) {
+            redirectAttributes.addFlashAttribute("error", "Mesa no encontrada");
+            return "redirect:/mesas";
+        }
+        model.addAttribute("titulo", "Editar Mesa");
+        model.addAttribute("mesa", mesa);
         return "mesas-crear";
     }
 }

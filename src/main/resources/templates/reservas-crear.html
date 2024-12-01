@@ -1,40 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Reserva</title>
-</head>
-<body>
-    <h1>Crear Nueva Reserva</h1>
+<html
+    lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/master}"
+>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Crear reserva</title>
+    </head>
 
-    <!-- Formulario para seleccionar la fecha -->
-    <form th:action="@{/reservas/crear}" method="get">
-        <label for="fecha">Seleccionar Fecha:</label>
-        <input type="date" id="fecha" name="fecha" required>
-        <button type="submit">Buscar Mesas Disponibles</button>
-    </form>
+    <body>
+        <div
+            class="row"
+            layout:fragment="page-content"
+            style="margin-top: 50px"
+        >
+            <h1 th:text="${mensaje}">Crear Reserva</h1>
 
-    <!-- Si hay mesas disponibles, mostrar la selección de mesa -->
-    <div th:if="${mesasDisponibles != null}">
-        <h2>Mesas Disponibles para la Fecha: <span th:text="${fecha}"></span></h2>
-        <form th:action="@{/reservas/confirmar}" method="post">
-            <label for="mesaId">Seleccionar Mesa:</label>
-            <select id="mesaId" name="mesaId" required>
-                <option value="" disabled selected>Elija una mesa</option>
-                <tr th:each="mesa : ${mesasDisponibles}">
-                    <option th:value="${mesa.id}" th:text="'Mesa ' + ${mesa.numero}"></option>
-                </tr>
-            </select>
-            <br>
-            <!-- Formulario para ingresar ID del cliente -->
-            <label for="clienteId">ID del Cliente:</label>
-            <input type="number" id="clienteId" name="clienteId" placeholder="ID del Cliente" required>
-            <button type="submit">Confirmar Reserva</button>
-        </form>
-    </div>
+            <form
+                th:action="@{/reservas/confirmar}"
+                th:object="${reserva}"
+                method="post"
+            >
+                <label for="clienteId">Cliente ID:</label>
+                <input type="text" id="clienteId" th:field="*{cliente.id}" />
 
-    <!-- Mostrar mensaje si no hay mesas disponibles -->
-    <p th:if="${mensaje != null}" th:text="${mensaje}" class="red-text"></p>
-</body>
+                <label for="mesaId">Mesa ID:</label>
+                <select class="browser-default" id="mesaId" th:field="*{mesa.id}">
+                    <option
+                        th:each="mesa : ${mesasDisponibles}"
+                        th:value="${mesa.id}"
+                        th:text="${mesa.id}"
+                    ></option>
+                </select>
+
+                <button type="submit">Confirmar Reserva</button>
+            </form>
+        </div>
+    </body>
 </html>

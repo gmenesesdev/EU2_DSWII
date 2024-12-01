@@ -1,7 +1,5 @@
 package cl.ipss.evu2.models;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,15 +21,12 @@ public class Reserva {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
-    private LocalDate fecha;
-
     public Reserva() {
     }
 
-    public Reserva(Mesa mesa, Cliente cliente, LocalDate fecha) {
+    public Reserva(Mesa mesa, Cliente cliente) {
         this.mesa = mesa;
         this.cliente = cliente;
-        this.fecha = fecha;
     }
 
     public Long getId() {
@@ -56,14 +51,6 @@ public class Reserva {
 
     public void setMesa(Mesa mesa) {
         this.mesa = mesa;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
     }
 
     public boolean isEmpty() {

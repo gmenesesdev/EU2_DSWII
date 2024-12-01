@@ -32,15 +32,13 @@
                     <th>ID Reserva</th>
                     <th>Cliente</th>
                     <th>Mesa</th>
-                    <th>Fecha</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="reserva : ${reservas}">
                     <td th:text="${reserva.id}"></td>
                     <td th:text="${reserva.cliente.nombre}"></td>
-                    <td th:text="${reserva.mesa.numero}"></td>
-                    <td th:text="${reserva.fecha}"></td>
+                    <td th:text="${reserva.mesa.capacidad}"></td>
                 </tr>
             </tbody>
         </table>
